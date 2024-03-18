@@ -4,6 +4,7 @@ import {
   createContactSchema,
   updateContactSchema,
 } from "../schemas/contactsSchemas.js";
+import { request } from "express";
 
 export const getAllContacts = async (req, res, next) => {
   try {
@@ -48,7 +49,8 @@ export const createContact = async (req, res, next) => {
     if (error) {
       throw HttpError(400, error.message);
     }
-    const result = await contactsService.addContact(req.body);
+    const { name, email, phone } = req.body;
+    const result = await contactsService.addContact(name, email, phone);
 
     res.status(201).json(result);
   } catch (error) {
