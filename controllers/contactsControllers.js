@@ -42,3 +42,14 @@ export const updateContact = controllerDecorator(async (req, res, next) => {
 
   res.status(200).json(result);
 });
+
+export const updateStatusContact = controllerDecorator(
+  async (req, res, next) => {
+    const { id } = req.params;
+    const favoriteContact = await contactsService.updateStatus(id, req.body);
+    if (!favoriteContact) {
+      throw HttpError(404);
+    }
+    res.status(200).json(favoriteContact);
+  }
+);
