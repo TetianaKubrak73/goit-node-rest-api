@@ -10,6 +10,7 @@ import {
 import {
   createContactSchema,
   updateContactSchema,
+  updateStatusSchema,
 } from "../schemas/contactsSchemas.js";
 import validateBody from "../helpers/validateBody.js";
 import isValidId from "../middlewares/isValidId.js";
@@ -33,7 +34,7 @@ contactsRouter.put(
 contactsRouter.patch(
   "/:id/favorite",
   isValidId,
-  validateBody(updateContactSchema),
+  validateBody(updateStatusSchema),
   updateStatusContact
 );
 
