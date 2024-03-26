@@ -48,7 +48,7 @@ export const updateStatusContact = controllerDecorator(
     const { id } = req.params;
     const favoriteContact = await contactsService.updateStatus(id, req.body);
     if (!favoriteContact) {
-      throw HttpError(404);
+      throw HttpError(404, `Not found`);
     }
     res.status(200).json(favoriteContact);
   }
